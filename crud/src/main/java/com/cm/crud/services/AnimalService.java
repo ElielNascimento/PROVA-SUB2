@@ -15,7 +15,6 @@ public class AnimalService {
      @Autowired
      private AnimalRepository animalRepository;
 
-
      @GetMapping
      public List<AnimalModel> findAll(){
          return  animalRepository.findAll();
@@ -43,15 +42,5 @@ public class AnimalService {
      public AnimalModel findById(@PathVariable Long id){
          return animalRepository.findById(id).get();
      }
-
-
-
-
-
-
-
-
-
-
 
 }

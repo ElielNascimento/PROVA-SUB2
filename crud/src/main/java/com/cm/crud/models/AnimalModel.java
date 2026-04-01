@@ -1,6 +1,6 @@
 package com.cm.crud.models;
 
-import com.cm.crud.controllers.AnimalEnum;
+import com.cm.crud.enums.AnimalEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +18,5 @@ public class AnimalModel {
     private String animalType;
     private String animalBreed;
     private AnimalEnum animalEnum;
-
 
 }

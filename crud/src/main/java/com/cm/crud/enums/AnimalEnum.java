@@ -1,9 +1,7 @@
-package com.cm.crud.controllers;
+package com.cm.crud.enums;
 
 public enum AnimalEnum {
-
     GORDO,
     MAGRO,
-    FORTE,
-
+    FORTE
 }
