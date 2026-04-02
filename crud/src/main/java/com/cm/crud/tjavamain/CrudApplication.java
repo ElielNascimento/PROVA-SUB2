@@ -1,4 +1,4 @@
-package com.cm.crud;
+package com.cm.crud.tjavamain;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -17,6 +17,5 @@ public class AnimalModel {
     private String animalName;
     private String animalType;
     private String animalBreed;
-    private AnimalEnum animalEnum;
 
 }

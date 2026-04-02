@@ -1,7 +1,7 @@
-package com.cm.crud.Controller;
+package com.cm.crud.services;
 
 import com.cm.crud.models.AnimalModel;
-import com.cm.crud.services.AnimalService;
+import com.cm.crud.repositories.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +13,14 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/animais")
 public class AnimalController {
+
+
     @Autowired
-    private AnimalService animalService;
+    private AnimalRepository animalRepository;
 
     @PostMapping
-    public ResponseEntity<AnimalModel> criarAnimal(@RequestBody AnimalModel animalModel){
-       AnimalModel requeste = animalService.criarAnimal(animalModel);
+    public ResponseEntity <AnimalModel> criarAnimal(@RequestBody AnimalModel animalModel){
+       AnimalModel requeste = animalRepository.save(animalModel);
        URI uri = ServletUriComponentsBuilder
                .fromCurrentRequest()
                .path("{/id}")
@@ -28,25 +30,25 @@ public class AnimalController {
     }
     @GetMapping
     public ResponseEntity<List<AnimalModel>> findAll(){
-        List<AnimalModel> requeste = animalService.findAll();
+        List<AnimalModel> requeste = animalRepository.findAll();
         return ResponseEntity.ok().body(requeste);
     }
     @DeleteMapping
     public ResponseEntity<?> deletarAnimal(@PathVariable Long id){
-        animalService.deletarAnimal(id);
+        animalRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping
     public ResponseEntity<AnimalModel> atualizarAnimal(@PathVariable Long id, @RequestBody AnimalModel animalModel){
-        AnimalModel novoAnimal = animalService.atualizarAnimal(animalModel, id);
+        AnimalModel novoAnimal = animalRepository.findById(id).get();
         return ResponseEntity.ok().body(novoAnimal);
     }
 
     @GetMapping
     public ResponseEntity<AnimalModel> findById(@PathVariable Long id){
-        AnimalModel requeste = animalService.findById(id);
-        return ResponseEntity.ok().body(requeste);
+      AnimalModel request = animalRepository.findById(id).get();
+       return  ResponseEntity.ok().body(request);
     }
 
 
